@@ -1,0 +1,9 @@
+{
+	"name": "meraki/plugin-scaffold",
+	"autoload": {
+		"psr-4": {
+			"BlockEditorDuringMaintenancePlugin\\": "classes/"
+		}
+	},
+	"require": {}
+}
