@@ -2,7 +2,7 @@
 
 namespace BlockEditorDuringMaintenancePlugin;
 
-if(! class_exists('OtherNamespace\BlockEditorDuringMaintenance')){
+if(! class_exists('BlockEditorDuringMaintenancePlugin\BlockEditorDuringMaintenance')){
     class BlockEditorDuringMaintenance {
 
         function __construct(){
@@ -43,9 +43,25 @@ if(! class_exists('OtherNamespace\BlockEditorDuringMaintenance')){
         // Function to display a maintenance message on the frontend
         function maintenance_mode_message() {
             if (!current_user_can('manage_options') && !is_admin()) {
+
+                if (function_exists('get_field')) {
+                    $maintenance_title = get_field('maintenance_title', 'options');
+                    $maintenance_description = get_field('maintenance_description', 'options');
+                    
+                    if($maintenance_title=='Undefined' || !$maintenance_title){
+                        $maintenance_title = 'Seite in Wartung';
+                    }
     
+                    if(!$maintenance_description){
+                        $maintenance_description = 'Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.';   
+                    }
+                }else{
+                    $maintenance_title = 'Seite in Wartung';
+                    $maintenance_description = 'Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.';   
+                }
+                
                 // HTML for the maintenance message
-                $message = '<div style="text-align: center; padding: 50px;"><h1>Seite in Wartung</h1><p>Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.</p></div>';
+                $message = '<div style="text-align: center; padding: 50px;"><h1>' . $maintenance_title . '</h1><p>' . $maintenance_description . '</p></div>';
 
                 // Display the message and stop loading the rest of the content
                 $current_url = $_SERVER['REQUEST_URI'];

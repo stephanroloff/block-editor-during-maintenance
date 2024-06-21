@@ -5,7 +5,7 @@
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            Werbeagenten TW GmbH
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       meraki
@@ -25,5 +25,6 @@ namespace BlockEditorDuringMaintenancePlugin;
 require __DIR__ . '/vendor/autoload.php';
 
 $BlockEditorDuringMaintenance = new BlockEditorDuringMaintenance();
+$OptionPageForFrontend = new OptionPageForFrontend();
 
 
