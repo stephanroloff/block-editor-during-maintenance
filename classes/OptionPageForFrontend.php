@@ -46,6 +46,14 @@ if (!class_exists('BlockEditorDuringMaintenancePlugin\OptionPageForFrontend')) {
                         'type' => 'textarea',
                         'instructions' => 'Enter the description for the maintenance mode.',
                     ),
+                    array(
+                        'key' => 'field_disable_message_frontend',
+                        'label' => 'Disable Message in Frontend',
+                        'name' => 'disable_message_frontend',
+                        'type' => 'true_false',
+                        'instructions' => 'Check to disable the maintenance message on the frontend.',
+                        'ui' => 1,
+                    ),
                 ),
                 'location' => array(
                     array(

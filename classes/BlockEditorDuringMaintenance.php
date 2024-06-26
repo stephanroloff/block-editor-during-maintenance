@@ -10,7 +10,15 @@ if(! class_exists('BlockEditorDuringMaintenancePlugin\BlockEditorDuringMaintenan
             add_action( 'admin_init', array($this, 'logout_non_admin_users'));
             add_action( 'admin_menu', array($this, 'disable_editor'), 999);
             // Hook to display the message before loading the page content
-            add_action('wp_loaded', array($this, 'maintenance_mode_message'));
+            // The message will only be displayed if the checkbox "Disable Message in Frontend" is TRUE.
+            if (function_exists('get_field')) {
+                $field_disable_message_frontend = get_field('disable_message_frontend', 'options');
+                if(!$field_disable_message_frontend){
+                    add_action('wp_loaded', array($this, 'maintenance_mode_message'));
+                }
+            }else{
+                add_action('wp_loaded', array($this, 'maintenance_mode_message'));
+            }
 
         }
 
@@ -56,8 +64,8 @@ if(! class_exists('BlockEditorDuringMaintenancePlugin\BlockEditorDuringMaintenan
                         $maintenance_description = 'Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.';   
                     }
                 }else{
-                    $maintenance_title = 'Seite in Wartung';
-                    $maintenance_description = 'Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.';   
+                    $maintenance_title = 'Wartungsarbeiten';
+                    $maintenance_description = 'Wir führen Wartungsarbeiten auf unserer Website durch. Bitte versuchen Sie es später erneut.';
                 }
                 
                 // HTML for the maintenance message
