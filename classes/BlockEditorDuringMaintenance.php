@@ -6,7 +6,7 @@ if(! class_exists('BlockEditorDuringMaintenancePlugin\BlockEditorDuringMaintenan
     class BlockEditorDuringMaintenance {
 
         function __construct(){
-            add_action( 'get_header', array($this, 'wp_maintenance_mode') );
+            // add_action( 'get_header', array($this, 'wp_maintenance_mode') );
             add_action( 'admin_init', array($this, 'logout_non_admin_users'));
             add_action( 'admin_menu', array($this, 'disable_editor'), 999);
             // Hook to display the message before loading the page content
