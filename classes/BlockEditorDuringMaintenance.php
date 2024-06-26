@@ -49,7 +49,7 @@ if(! class_exists('BlockEditorDuringMaintenancePlugin\BlockEditorDuringMaintenan
                     $maintenance_description = get_field('maintenance_description', 'options');
                     
                     if($maintenance_title=='Undefined' || !$maintenance_title){
-                        $maintenance_title = 'Seite in Wartung';
+                        $maintenance_title = 'Wartungsarbeiten';
                     }
     
                     if(!$maintenance_description){
